@@ -89,6 +89,12 @@
             text-shadow: 0 0 12px rgba(0,255,135,0.4);
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         nav a {
             font-family: var(--font-title);
             font-weight: 600;
@@ -455,6 +461,64 @@
 
         footer a:hover {
             color: var(--accent-green);
+        }
+
+        /* --- التعديلات الخاصة بالتصميم المتجاوب للجوال --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 4%;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav {
+                justify-content: center;
+                width: 100%;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 70px 5% 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .avatar-wrapper {
+                width: 160px;
+                height: 160px;
+            }
+
+            .section {
+                padding: 40px 5%;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .subscribe-box {
+                padding: 20px;
+                margin: 20px 15px;
+            }
+
+            /* إخفاء مؤشرات الماوس المتحركة على شاشات اللمس (الجوال) لحماية تجربة المستخدم والأداء */
+            #cursors-container {
+                display: none;
+            }
         }
     </style>
 </head>
