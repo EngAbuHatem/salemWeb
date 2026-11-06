@@ -1,3 +1,6 @@
+Di kɔd na fɔ mek di wɛb sait kɔntinyu fɔ sho di pikcha, wit watsap link fɔ kɔntakt, ɛn fɔ mek di mesaj go straight fɔ yon imel. Dis kɔd na di akwep kɔd fɔ di HTML fait:
+
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -178,6 +181,14 @@
             font-weight: 500;
         }
 
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
         .btn {
             font-family: var(--font-title);
             display: inline-block;
@@ -197,6 +208,16 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(18, 253, 238, 0.571);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
         }
 
         .stats-container {
@@ -443,7 +464,7 @@
     <section class="hero">
         <div class="avatar-wrapper" id="profile-avatar">
             <div class="avatar-container-inner">
-                <img src="new-image.png" alt="Salem M.S. Abu Ryala" class="avatar-img">
+                <img src="IMG-20260518-WA0086.jpg" alt="Salem M.S. Abu Ryala" class="avatar-img">
             </div>
         </div>
 
@@ -451,7 +472,10 @@
         <div class="hero-subtitle">Software Engineer & Builder 🇵🇸</div>
         <p id="hero-desc">مهندس برمجيات من فلسطين، أهتم بتحويل الأفكار والحلول البرمجية إلى منتجات عالية الجودة بتصميم نظيف وكود بسيط.</p>
         
-        <a href="#contact" class="btn" id="hero-btn">تواصل معي مباشرة</a>
+        <div class="btn-group">
+            <a href="#contact" class="btn" id="hero-btn">تواصل معي مباشرة</a>
+            <a href="https://wa.me/970597713683?text=مرحباً، أود الاستفسار عن خدماتك البرمجية..." target="_blank" class="btn btn-whatsapp">مراسلة عبر واتساب 💬</a>
+        </div>
 
         <div class="stats-container">
             <div class="stat-box">
@@ -547,9 +571,9 @@
 
     <div class="subscribe-box" id="subscribe-section">
         <h3>Stay in touch</h3>
-        <p style="color: var(--text-muted); margin: 10px 0 20px;">أرسل بريدك للتواصل المباشر ومناقشة المشاريع.</p>
-        <form onsubmit="event.preventDefault(); alert('شكراً لتواصلك!');">
-            <input type="email" placeholder="name@example.com" required>
+        <p style="color: var(--text-muted); margin: 10px 0 20px;">أرسل بريدك للاشتراك واستقبال الرسائل مباشرة على إيميلك.</p>
+        <form action="https://formspree.io/f/salemhatem199@gmail.com" method="POST">
+            <input type="email" name="email" placeholder="name@example.com" required>
             <button type="submit" class="btn">تواصل الآن</button>
         </form>
     </div>
@@ -649,3 +673,5 @@
     </script>
 </body>
 </html>
+
+```
