@@ -364,21 +364,41 @@
             font-family: var(--font-title);
             font-size: 1.5rem;
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .subscribe-box input[type="email"] {
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .subscribe-box input[type="email"],
+        .subscribe-box textarea {
+            width: 100%;
             padding: 12px 16px;
-            width: 60%;
-            border-radius: 25px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             background: #0b0c10;
-            color: #dc9cec;
-            margin-left: 10px;
+            color: #f0f2f5;
             outline: none;
             font-family: var(--font-body);
+            font-size: 1rem;
         }
 
-        .subscribe-box input[type="email"]:focus {
+        .subscribe-box textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .subscribe-box input[type="email"]:focus,
+        .subscribe-box textarea:focus {
             border-color: var(--accent-green);
         }
 
@@ -566,12 +586,23 @@
         </div>
     </section>
 
+    <!-- نموذج التواصل المحدث باستخدام Formspree -->
     <div class="subscribe-box" id="subscribe-section">
         <h3>Stay in touch</h3>
-        <p style="color: var(--text-muted); margin: 10px 0 20px;">أرسل بريدك للاشتراك واستقبال الرسائل مباشرة على إيميلك.</p>
-        <form action="https://formspree.io/f/salemhatem199@gmail.com" method="POST">
-            <input type="email" name="email" placeholder="name@example.com" required>
-            <button type="submit" class="btn">تواصل الآن</button>
+        <p style="color: var(--text-muted); margin: 10px 0 20px;">أرسل بريدك ورسالتك وستصلني مباشرة على بريدي الإلكتروني.</p>
+        
+        <form action="https://formspree.io/f/xoeezjvj" method="POST">
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">الرسالة:</label>
+                <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">إرسال الرسالة</button>
         </form>
     </div>
 
