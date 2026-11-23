@@ -104,13 +104,13 @@
         /* الوضع النهاري */
         body[data-mode="light"] {
             --bg-color: #f4f7fb;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-bg-2: rgba(248, 250, 252, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.84);
+            --card-bg-2: rgba(248, 250, 252, 0.88);
             --input-bg: #ffffff;
             --header-bg: rgba(255, 255, 255, 0.9);
             --text-main: #0f172a;
             --text-muted: #475569;
-            --border-subtle: rgba(15, 23, 42, 0.12);
+            --border-subtle: rgba(15, 23, 42, 0.14);
         }
 
         body[data-mode="light"][data-color="green"] {
@@ -155,12 +155,12 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.16;
+            opacity: 0.2;
             pointer-events: none;
         }
 
         body[data-mode="light"] #matrix-bg {
-            opacity: 0.07;
+            opacity: 0.32;
         }
 
         .blob-1, .blob-2 {
@@ -409,7 +409,7 @@
             padding: 14px 22px;
             border-radius: 14px;
             min-width: 135px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             transition: transform 0.25s ease, border-color 0.25s ease;
         }
 
@@ -496,7 +496,7 @@
             border: 1px solid var(--border-subtle);
             padding: var(--card-pad);
             border-radius: 18px;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
             transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
         }
@@ -653,7 +653,7 @@
             text-align: center;
             max-width: 580px;
             margin: 36px auto;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
         }
 
         @media (min-width: 768px) {
@@ -858,71 +858,71 @@
                         <img src="ai-fluency.png" alt="AI Fluency: Framework & Foundations" loading="lazy">
                     </div>
                     <h3>AI Fluency: Framework & Foundations</h3>
-                    <p data-i18n="cert1Desc">شهادة إتمام معتمدة من Anthropic في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.</p>
+                    <p data-i18n="cert1Desc">شهادة إتمام معتمدة في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://verify.skilljar.com/c/bf2f3bdqb45v" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <a href="https://verify.skilljar.com/c/bf2f3bdqb45v" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
                     <button type="button" class="card-link card-link-secondary" onclick="openLightbox('ai-fluency.png', 'AI Fluency: Framework & Foundations')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
-            <!-- 2. Claude Code 101 -->
+            <!-- 2. Claude Academy — AI Fluency Badge -->
             <div class="card" id="cert-2">
+                <div>
+                    <div class="cert-img-frame" onclick="openLightbox('claude-fluency-badge.png', 'Claude Academy — AI Fluency Badge')">
+                        <img src="claude-fluency-badge.png" alt="Claude Academy — AI Fluency Badge" loading="lazy">
+                    </div>
+                    <h3>Claude Academy — AI Fluency Badge</h3>
+                    <p data-i18n="cert2Desc">شارة إتمام AI Fluency من أكاديمية Claude.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://academy.claude.com/verify/7849217eb1fb1f5d51af2c09ae64037b" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('claude-fluency-badge.png', 'Claude Academy — AI Fluency Badge')" data-i18n="viewImage">عرض الصورة 🔍</button>
+                </div>
+            </div>
+
+            <!-- 3. Claude Code 101 -->
+            <div class="card" id="cert-3">
                 <div>
                     <div class="cert-img-frame" onclick="openLightbox('claude-code-101.png', 'Claude Code 101')">
                         <img src="claude-code-101.png" alt="Claude Code 101" loading="lazy">
                     </div>
                     <h3>Claude Code 101</h3>
-                    <p data-i18n="cert2Desc">شهادة إتمام دورة Claude Code 101 من Anthropic.</p>
+                    <p data-i18n="cert3Desc">شهادة إتمام دورة Claude Code 101.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://academy.claude.com/verify/7849217eb1fb1f5d51af2c09ae64037b" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <a href="https://verify.skilljar.com/c/nm3gdsjtmsjd" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
                     <button type="button" class="card-link card-link-secondary" onclick="openLightbox('claude-code-101.png', 'Claude Code 101')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
-            <!-- 3. Dub.ai & Claude Academy -->
-            <div class="card" id="cert-3">
-                <div>
-                    <div class="cert-img-frame" onclick="openLightbox('claude-fluency-badge.png', 'Dub.ai & Claude Academy')">
-                        <img src="claude-fluency-badge.png" alt="Dub.ai & Claude Academy" loading="lazy">
-                    </div>
-                    <h3>Dub.ai & Claude Academy</h3>
-                    <p data-i18n="cert3Desc">شهادة وشارة إتمام عبر منصة Dub.ai وأكاديمية Claude.</p>
-                </div>
-                <div class="card-actions">
-                    <a href="https://omp.dub.ai/certificate/gJy62NBtkSpM" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('claude-fluency-badge.png', 'Dub.ai & Claude Academy')" data-i18n="viewImage">عرض الصورة 🔍</button>
-                </div>
-            </div>
-
-            <!-- 4. TAQAT — AI Creative -->
+            <!-- 4. 1 Million Prompters — Dub.ai -->
             <div class="card" id="cert-4">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('taqat-ai-creative.png', 'TAQAT — AI Creative')">
-                        <img src="taqat-ai-creative.png" alt="TAQAT — AI Creative" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('one-million-prompters.png', '1 Million Prompters — Dub.ai')">
+                        <img src="one-million-prompters.png" alt="1 Million Prompters — Dub.ai" loading="lazy">
                     </div>
-                    <h3>TAQAT — AI Creative</h3>
-                    <p data-i18n="cert4Desc">إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).</p>
+                    <h3>1 Million Prompters — Dub.ai</h3>
+                    <p data-i18n="cert4Desc">شهادة إتمام مبادرة مليون خبير لأوامر الذكاء الاصطناعي عبر منصة Dub.ai.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://taqat.academy/verify/TQ-2026-00214" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('taqat-ai-creative.png', 'TAQAT — AI Creative')" data-i18n="viewImage">عرض الصورة 🔍</button>
+                    <a href="https://omp.dub.ai/certificate/gJy62NBtkSpM" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('one-million-prompters.png', '1 Million Prompters — Dub.ai')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
-            <!-- 5. 1 Million Prompters — Skilljar -->
+            <!-- 5. TAQAT — AI Creative -->
             <div class="card" id="cert-5">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('one-million-prompters.png', '1 Million Prompters — Skilljar')">
-                        <img src="one-million-prompters.png" alt="1 Million Prompters — Skilljar" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('taqat-ai-creative.png', 'TAQAT — AI Creative (TQ-2026-00214)')">
+                        <img src="taqat-ai-creative.png" alt="TAQAT — AI Creative (TQ-2026-00214)" loading="lazy">
                     </div>
-                    <h3>1 Million Prompters — Skilljar</h3>
-                    <p data-i18n="cert5Desc">مبادرة مليون خبير لأوامر الذكاء الاصطناعي وشهادة التحقق عبر Skilljar.</p>
+                    <h3>TAQAT — AI Creative</h3>
+                    <p data-i18n="cert5Desc">إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://verify.skilljar.com/c/nm3gdsjtmsjd" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('one-million-prompters.png', '1 Million Prompters — Skilljar')" data-i18n="viewImage">عرض الصورة 🔍</button>
+                    <a href="https://taqat.academy/verify/TQ-2026-00214" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('taqat-ai-creative.png', 'TAQAT — AI Creative (TQ-2026-00214)')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
         </div>
@@ -999,11 +999,11 @@
                 skillsTitle: "المهارات والتقنيات",
                 skillProblem: "Problem Solving",
                 certsTitle: "الشهادات المعتمدة",
-                cert1Desc: "شهادة إتمام معتمدة من Anthropic في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.",
-                cert2Desc: "شهادة إتمام دورة Claude Code 101 من Anthropic.",
-                cert3Desc: "شهادة وشارة إتمام عبر منصة Dub.ai وأكاديمية Claude.",
-                cert4Desc: "إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).",
-                cert5Desc: "مبادرة مليون خبير لأوامر الذكاء الاصطناعي وشهادة التحقق عبر Skilljar.",
+                cert1Desc: "شهادة إتمام معتمدة في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.",
+                cert2Desc: "شارة إتمام AI Fluency من أكاديمية Claude.",
+                cert3Desc: "شهادة إتمام دورة Claude Code 101.",
+                cert4Desc: "شهادة إتمام مبادرة مليون خبير لأوامر الذكاء الاصطناعي عبر منصة Dub.ai.",
+                cert5Desc: "إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).",
                 verifyCert: "التحقق من الشهادة ↗",
                 viewImage: "عرض الصورة 🔍",
                 closeBtn: "إغلاق ✕",
@@ -1044,11 +1044,11 @@
                 skillsTitle: "Skills & Technologies",
                 skillProblem: "Problem Solving",
                 certsTitle: "Verified Certificates",
-                cert1Desc: "Verified completion certificate from Anthropic on AI Fluency Framework & Foundations.",
-                cert2Desc: "Completion certificate for Claude Code 101 from Anthropic.",
-                cert3Desc: "Completion certificate and badge via Dub.ai and Claude Academy.",
-                cert4Desc: "Completed the AI Creative training program by TAQAT Academy (9 hours, Intermediate, Oct 2026).",
-                cert5Desc: "1 Million Prompters initiative certificate verified through Skilljar.",
+                cert1Desc: "Verified completion certificate for AI Fluency: Framework & Foundations.",
+                cert2Desc: "AI Fluency completion badge from Claude Academy.",
+                cert3Desc: "Completion certificate for Claude Code 101.",
+                cert4Desc: "Completion certificate for the 1 Million Prompters initiative via Dub.ai.",
+                cert5Desc: "Completed the AI Creative training program by TAQAT Academy (9 hours, Intermediate, Oct 2026).",
                 verifyCert: "Verify Certificate ↗",
                 viewImage: "View Image 🔍",
                 closeBtn: "Close ✕",
@@ -1097,7 +1097,7 @@
             if (currentColor === 'blue') {
                 matrixColor = currentMode === 'light' ? '#0284c7' : '#38bdf8';
             } else {
-                matrixColor = currentMode === 'light' ? '#059669' : '#00ff87';
+                matrixColor = currentMode === 'light' ? '#047857' : '#00ff87';
             }
         }
 
@@ -1168,7 +1168,7 @@
         const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}=+*#const let function return';
 
         function drawMatrix() {
-            ctx.fillStyle = currentMode === 'light' ? 'rgba(244, 247, 251, 0.08)' : 'rgba(8, 9, 12, 0.05)';
+            ctx.fillStyle = currentMode === 'light' ? 'rgba(244, 247, 251, 0.04)' : 'rgba(8, 9, 12, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = matrixColor;
