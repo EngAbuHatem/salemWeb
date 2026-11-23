@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سالم أبو ريالة | Eng. AbuHatem - Portfolio</title>
+    <title id="page-title">سالم أبو ريالة | Eng. AbuHatem - Portfolio</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,15 +16,36 @@
             --card-bg: rgba(18, 22, 31, 0.78);
             --text-main: #f0f2f5;
             --text-muted: #a0a6b0;
-            --accent-red: #ff4757;
-            --accent-orange: #ff7f50;
-            --accent-green: #00ff87;
+
+            /* الثيم الافتراضي: أخضر */
+            --accent-primary: #00ff87;
+            --accent-secondary: #00b894;
             --accent-cyan: #12fdee;
-            --border-color: rgba(0, 255, 135, 0.16);
-            --glow-shadow: 0 0 30px rgba(0, 255, 135, 0.28);
+            --accent-orange: #ff7f50;
+            --accent-red: #ff4757;
+            --accent-rgb: 0, 255, 135;
+
+            --border-color: rgba(var(--accent-rgb), 0.18);
+            --glow-shadow: 0 0 30px rgba(var(--accent-rgb), 0.28);
             
             --font-title: 'Cairo', sans-serif;
             --font-body: 'Tajawal', sans-serif;
+        }
+
+        /* ثيم أزرق */
+        body[data-theme="blue"] {
+            --accent-primary: #38bdf8;
+            --accent-secondary: #2563eb;
+            --accent-cyan: #67e8f9;
+            --accent-rgb: 56, 189, 248;
+        }
+
+        /* ثيم أحمر */
+        body[data-theme="red"] {
+            --accent-primary: #ff4757;
+            --accent-secondary: #dc2626;
+            --accent-cyan: #ff7f50;
+            --accent-rgb: 255, 71, 87;
         }
 
         * {
@@ -68,36 +89,40 @@
             opacity: 0.2;
             pointer-events: none;
             z-index: 0;
+            transition: background 0.4s ease;
         }
-        .blob-1 { top: 5%; right: 10%; background: var(--accent-green); }
-        .blob-2 { top: 45%; left: 10%; background: var(--accent-orange); }
+        .blob-1 { top: 5%; right: 10%; background: var(--accent-primary); }
+        .blob-2 { top: 45%; left: 10%; background: var(--accent-secondary); }
 
         header {
-            padding: 20px 8%;
+            padding: 16px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 14px;
             border-bottom: 1px solid var(--border-color);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(8, 9, 12, 0.85);
+            background: rgba(8, 9, 12, 0.88);
+            flex-wrap: wrap;
         }
 
         .logo {
             font-family: var(--font-title);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            color: var(--accent-green);
+            color: var(--accent-primary);
             letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(0,255,135,0.4);
+            text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
         }
 
         nav {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
+            gap: 6px;
         }
 
         nav a {
@@ -105,18 +130,79 @@
             font-weight: 600;
             color: var(--text-muted);
             text-decoration: none;
-            margin-right: 20px;
+            padding: 4px 10px;
+            border-radius: 8px;
             transition: all 0.3s;
-            font-size: 1rem;
+            font-size: 0.98rem;
         }
 
         nav a:hover {
-            color: var(--accent-green);
-            text-shadow: 0 0 8px var(--accent-green);
+            color: var(--accent-primary);
+            text-shadow: 0 0 8px var(--accent-primary);
         }
 
+        /* أدوات التحكم: الترجمة + تبديل الألوان */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 7px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(var(--accent-rgb), 0.45);
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(var(--accent-rgb), 0.24);
+            color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+
+        .color-switcher {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 12px;
+            background: rgba(18, 22, 31, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .color-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .color-dot.active {
+            border-color: #ffffff;
+            transform: scale(1.15);
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .dot-green { background: #00ff87; color: #00ff87; }
+        .dot-blue  { background: #38bdf8; color: #38bdf8; }
+        .dot-red   { background: #ff4757; color: #ff4757; }
+
         .hero {
-            padding: 110px 8% 60px;
+            padding: 100px 8% 60px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -130,14 +216,14 @@
             margin: 0 auto 30px;
             border-radius: 50%;
             padding: 5px;
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan), var(--accent-orange), var(--accent-red));
-            box-shadow: 0 0 35px rgba(0, 255, 135, 0.4);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan), var(--accent-secondary), var(--accent-orange));
+            box-shadow: 0 0 35px rgba(var(--accent-rgb), 0.4);
             animation: pulse-glow 4s infinite alternate;
         }
 
         @keyframes pulse-glow {
-            0% { box-shadow: 0 0 25px rgba(0, 255, 135, 0.3); transform: scale(1); }
-            100% { box-shadow: 0 0 50px rgba(0, 255, 135, 0.6); transform: scale(1.02); }
+            0% { box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.3); transform: scale(1); }
+            100% { box-shadow: 0 0 50px rgba(var(--accent-rgb), 0.6); transform: scale(1.02); }
         }
 
         .avatar-container-inner {
@@ -166,16 +252,15 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 12px;
-            background: linear-gradient(45deg, var(--accent-green), #ffffff, var(--accent-orange));
+            background: linear-gradient(45deg, var(--accent-primary), #ffffff, var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 135, 0.2);
         }
 
         .hero-subtitle {
             font-family: var(--font-title);
             font-size: 1.25rem;
-            color: var(--accent-green);
+            color: var(--accent-primary);
             margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -207,16 +292,20 @@
             justify-content: center;
             gap: 8px;
             padding: 12px 32px;
-            background: linear-gradient(135deg, var(--accent-green), #00b894);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: #080b0f;
             text-decoration: none;
             border-radius: 14px;
             font-weight: 700;
             font-size: 1.05rem;
             transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, filter 0.28s ease;
-            box-shadow: 0 6px 22px rgba(0, 255, 135, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            box-shadow: 0 6px 22px rgba(var(--accent-rgb), 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.22);
             cursor: pointer;
+        }
+
+        body[data-theme="red"] .btn {
+            color: #ffffff;
         }
 
         .btn::before {
@@ -237,7 +326,7 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(18, 253, 238, 0.35);
+            box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.42);
             filter: brightness(1.04);
         }
 
@@ -247,7 +336,7 @@
 
         .btn-whatsapp {
             background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #ffffff;
+            color: #ffffff !important;
             box-shadow: 0 6px 22px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
@@ -268,35 +357,34 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: var(--accent-green);
+            color: var(--accent-primary);
             text-decoration: none;
             font-weight: 700;
             font-size: 0.9rem;
             padding: 7px 13px;
             border-radius: 10px;
-            background: rgba(0, 255, 135, 0.06);
-            border: 1px solid rgba(0, 255, 135, 0.22);
+            background: rgba(var(--accent-rgb), 0.08);
+            border: 1px solid rgba(var(--accent-rgb), 0.25);
             transition: all 0.25s ease;
             cursor: pointer;
         }
 
         .card-link:hover {
-            background: rgba(0, 255, 135, 0.14);
-            border-color: var(--accent-green);
+            background: rgba(var(--accent-rgb), 0.16);
+            border-color: var(--accent-primary);
             transform: translateY(-2px);
-            box-shadow: 0 0 14px rgba(0, 255, 135, 0.2);
+            box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.22);
         }
 
         .card-link-secondary {
             color: var(--accent-cyan);
-            background: rgba(18, 253, 238, 0.06);
-            border-color: rgba(18, 253, 238, 0.24);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.18);
         }
 
         .card-link-secondary:hover {
-            background: rgba(18, 253, 238, 0.14);
+            background: rgba(255, 255, 255, 0.1);
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 14px rgba(18, 253, 238, 0.2);
         }
 
         .stats-container {
@@ -319,15 +407,15 @@
 
         .stat-box:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-green);
-            box-shadow: 0 8px 22px rgba(0, 255, 135, 0.14);
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 22px rgba(var(--accent-rgb), 0.16);
         }
 
         .stat-number {
             font-family: var(--font-title);
             font-size: 1.6rem;
             font-weight: 800;
-            color: var(--accent-green);
+            color: var(--accent-primary);
         }
 
         .stat-label {
@@ -356,11 +444,11 @@
             content: '';
             position: absolute;
             bottom: -6px;
-            right: 0;
+            inset-inline-start: 0;
             width: 45%;
             height: 3px;
-            background: var(--accent-green);
-            box-shadow: 0 0 10px var(--accent-green);
+            background: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
         }
 
         .skills-list {
@@ -383,9 +471,9 @@
         }
 
         .skill-badge:hover {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 12px rgba(0, 255, 135, 0.4);
-            color: var(--accent-green);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
+            color: var(--accent-primary);
         }
 
         .grid {
@@ -411,8 +499,8 @@
 
         .card:hover {
             transform: translateY(-6px);
-            border-color: rgba(0, 255, 135, 0.55);
-            box-shadow: 0 16px 34px rgba(5, 247, 134, 0.16), inset 0 1px 0 rgba(0, 255, 135, 0.15);
+            border-color: rgba(var(--accent-rgb), 0.55);
+            box-shadow: 0 16px 34px rgba(var(--accent-rgb), 0.16), inset 0 1px 0 rgba(var(--accent-rgb), 0.15);
         }
 
         .card h3 {
@@ -436,7 +524,7 @@
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 15px;
-            border: 1px solid rgba(0, 255, 135, 0.22);
+            border: 1px solid rgba(var(--accent-rgb), 0.25);
             background: rgba(8, 11, 18, 0.92);
             cursor: zoom-in;
         }
@@ -476,7 +564,7 @@
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(0, 255, 135, 0.35);
+            border: 1px solid rgba(var(--accent-rgb), 0.35);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
             background: #0d1119;
         }
@@ -491,7 +579,7 @@
         .lightbox-close {
             position: absolute;
             top: 12px;
-            left: 12px;
+            inset-inline-start: 12px;
             background: rgba(8, 9, 12, 0.85);
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.25);
@@ -504,7 +592,7 @@
 
         .subscribe-box {
             background: linear-gradient(160deg, rgba(22, 28, 40, 0.9), rgba(13, 17, 25, 0.85));
-            border: 1px solid rgba(0, 255, 135, 0.25);
+            border: 1px solid rgba(var(--accent-rgb), 0.25);
             padding: 40px;
             border-radius: 22px;
             text-align: center;
@@ -523,7 +611,7 @@
 
         .form-group {
             margin-bottom: 15px;
-            text-align: right;
+            text-align: start;
         }
 
         .form-group label {
@@ -554,8 +642,8 @@
 
         .subscribe-box input[type="email"]:focus,
         .subscribe-box textarea:focus {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(0, 255, 135, 0.12);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
         }
 
         .cursor-arrow {
@@ -610,12 +698,12 @@
         }
 
         footer a:hover {
-            color: var(--accent-green);
+            color: var(--accent-primary);
         }
 
         @media (max-width: 768px) {
             header {
-                padding: 15px 4%;
+                padding: 14px 4%;
                 flex-direction: column;
                 gap: 10px;
             }
@@ -626,7 +714,6 @@
             }
 
             nav a {
-                margin: 0 8px;
                 font-size: 0.9rem;
             }
 
@@ -670,7 +757,7 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="green">
 
     <canvas id="matrix-bg"></canvas>
 
@@ -681,13 +768,23 @@
 
     <header>
         <div class="logo">Eng. AbuHatem</div>
+
         <nav>
-            <a href="#about" id="nav-about">عني</a>
-            <a href="#projects" id="nav-projects">المشاريع</a>
-            <a href="#skills" id="nav-skills">المهارات</a>
-            <a href="#certs" id="nav-certs">الشهادات</a>
-            <a href="#contact" id="nav-contact">تواصل معي</a>
+            <a href="#about" id="nav-about" data-i18n="navAbout">عني</a>
+            <a href="#projects" id="nav-projects" data-i18n="navProjects">المشاريع</a>
+            <a href="#skills" id="nav-skills" data-i18n="navSkills">المهارات</a>
+            <a href="#certs" id="nav-certs" data-i18n="navCerts">الشهادات</a>
+            <a href="#contact" id="nav-contact" data-i18n="navContact">تواصل معي</a>
         </nav>
+
+        <div class="header-controls">
+            <div class="color-switcher" aria-label="Color Theme Switcher">
+                <button type="button" class="color-dot dot-green active" data-theme="green" title="أخضر / Green" onclick="setTheme('green')"></button>
+                <button type="button" class="color-dot dot-blue" data-theme="blue" title="أزرق / Blue" onclick="setTheme('blue')"></button>
+                <button type="button" class="color-dot dot-red" data-theme="red" title="أحمر / Red" onclick="setTheme('red')"></button>
+            </div>
+            <button type="button" class="lang-btn" id="lang-toggle" onclick="toggleLanguage()">English</button>
+        </div>
     </header>
 
     <section class="hero">
@@ -698,202 +795,202 @@
         </div>
 
         <h1 id="hero-title">Salem M.S. Abu Ryala</h1>
-        <div class="hero-subtitle">Software Engineer & Builder 🇵🇸</div>
-        <p id="hero-desc">مهندس برمجيات من فلسطين، أهتم بتحويل الأفكار والحلول البرمجية إلى منتجات عالية الجودة بتصميم نظيف وكود بسيط.</p>
+        <div class="hero-subtitle" data-i18n="heroSubtitle">Software Engineer & Builder 🇵🇸</div>
+        <p id="hero-desc" data-i18n="heroDesc">مهندس برمجيات من فلسطين، أهتم بتحويل الأفكار والحلول البرمجية إلى منتجات عالية الجودة بتصميم نظيف وكود بسيط.</p>
         
         <div class="btn-group">
-            <a href="#contact" class="btn" id="hero-btn">تواصل معي مباشرة</a>
-            <a href="https://wa.me/970597713683?text=مرحباً، أود الاستفسار عن خدماتك البرمجية..." target="_blank" class="btn btn-whatsapp">مراسلة عبر واتساب 💬</a>
+            <a href="#contact" class="btn" id="hero-btn" data-i18n="heroBtn">تواصل معي مباشرة</a>
+            <a href="https://wa.me/970597713683?text=مرحباً، أود الاستفسار عن خدماتك البرمجية..." target="_blank" class="btn btn-whatsapp" data-i18n="whatsappBtn">مراسلة عبر واتساب 💬</a>
         </div>
 
         <div class="stats-container">
             <div class="stat-box">
                 <div class="stat-number">+5</div>
-                <div class="stat-label">شهادات معتمدة</div>
+                <div class="stat-label" data-i18n="statCerts">شهادات معتمدة</div>
             </div>
             <div class="stat-box">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">كود نظيف ومنظم</div>
+                <div class="stat-label" data-i18n="statCode">كود نظيف ومنظم</div>
             </div>
             <div class="stat-box">
                 <div class="stat-number">🇵🇸</div>
-                <div class="stat-label">فلسطين</div>
+                <div class="stat-label" data-i18n="statLocation">فلسطين</div>
             </div>
         </div>
     </section>
 
     <section class="section" id="about">
-        <h2 class="section-title">نبذة عني</h2>
-        <p id="about-text">أنا سالم محمد أبو ريالة، مهندس شغوف بتصميم وتطوير البرمجيات والأدوات الذكية المفيدة التي توفر حلولاً حقيقية وتجربة مستخدم ممتازة.</p>
+        <h2 class="section-title" data-i18n="aboutTitle">نبذة عني</h2>
+        <p id="about-text" data-i18n="aboutText">أنا سالم محمد أبو ريالة، مهندس شغوف بتصميم وتطوير البرمجيات والأدوات الذكية المفيدة التي توفر حلولاً حقيقية وتجربة مستخدم ممتازة.</p>
     </section>
 
     <section class="section" id="projects">
-        <h2 class="section-title">المشاريع البارزة</h2>
+        <h2 class="section-title" data-i18n="projectsTitle">المشاريع البارزة</h2>
         <div class="grid">
             <div class="card" id="proj-1">
                 <div>
-                    <h3>تطبيق ويب متكامل (Web App)</h3>
-                    <p>منصة ويب توفر واجهات تفاعلية سريعة وحلول برمجية حديثة.</p>
+                    <h3 data-i18n="proj1Title">تطبيق ويب متكامل (Web App)</h3>
+                    <p data-i18n="proj1Desc">منصة ويب توفر واجهات تفاعلية سريعة وحلول برمجية حديثة.</p>
                     <div style="margin-bottom: 15px;">
                         <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">JavaScript</span>
                         <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Web Dev</span>
                     </div>
                 </div>
                 <div class="card-actions">
-                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link">معاينة الكود على GitHub ↗</a>
+                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link" data-i18n="viewGithub">معاينة الكود على GitHub ↗</a>
                 </div>
             </div>
             <div class="card" id="proj-2">
                 <div>
-                    <h3>أداة أتمتة وتحليل بيانات</h3>
-                    <p>برنامج بلغة بايثون لتنفيذ المهام المؤتمتة وتسهيل معالجة البيانات.</p>
+                    <h3 data-i18n="proj2Title">أداة أتمتة وتحليل بيانات</h3>
+                    <p data-i18n="proj2Desc">برنامج بلغة بايثون لتنفيذ المهام المؤتمتة وتسهيل معالجة البيانات.</p>
                     <div style="margin-bottom: 15px;">
                         <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Python</span>
                         <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Automation</span>
                     </div>
                 </div>
                 <div class="card-actions">
-                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link">معاينة الكود على GitHub ↗</a>
+                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link" data-i18n="viewGithub">معاينة الكود على GitHub ↗</a>
                 </div>
             </div>
             <div class="card" id="proj-3">
                 <div>
-                    <h3>تصميم واجهات وتجربة المستخدم</h3>
-                    <p>تصميم وتطبيق واجهات حديثة تعتمد على الجمالية والبساطة والأداء العالي.</p>
+                    <h3 data-i18n="proj3Title">تصميم واجهات وتجربة المستخدم</h3>
+                    <p data-i18n="proj3Desc">تصميم وتطبيق واجهات حديثة تعتمد على الجمالية والبساطة والأداء العالي.</p>
                     <div style="margin-bottom: 15px;">
                         <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">UI Design</span>
                         <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Electronics</span>
                     </div>
                 </div>
                 <div class="card-actions">
-                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link">المعاينة الحية ↗</a>
+                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link" data-i18n="livePreview">المعاينة الحية ↗</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="section" id="skills">
-        <h2 class="section-title">المهارات والتقنيات</h2>
+        <h2 class="section-title" data-i18n="skillsTitle">المهارات والتقنيات</h2>
         <div class="skills-list" id="skills-container">
             <span class="skill-badge">HTML & CSS</span>
             <span class="skill-badge">JavaScript</span>
             <span class="skill-badge">Python</span>
             <span class="skill-badge">UI Design</span>
             <span class="skill-badge">Electronics</span>
-            <span class="skill-badge">Problem Solving</span>
+            <span class="skill-badge" data-i18n="skillProblem">Problem Solving</span>
         </div>
     </section>
 
     <section class="section" id="certs">
-        <h2 class="section-title">الشهادات المعتمدة</h2>
+        <h2 class="section-title" data-i18n="certsTitle">الشهادات المعتمدة</h2>
         <div class="grid">
             <!-- 1. AI Fluency: Framework & Foundations -->
             <div class="card" id="cert-1">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('certs/ai-fluency.png')">
-                        <img src="certs/ai-fluency.png" alt="AI Fluency: Framework & Foundations" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('ai-fluency.png')">
+                        <img src="ai-fluency.png" alt="AI Fluency: Framework & Foundations" loading="lazy">
                     </div>
                     <h3>AI Fluency: Framework & Foundations</h3>
-                    <p>شهادة إتمام معتمدة من Anthropic في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.</p>
+                    <p data-i18n="cert1Desc">شهادة إتمام معتمدة من Anthropic في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://verify.skilljar.com/c/bf2f3bdqb45v" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/ai-fluency.png')">عرض الصورة 🔍</button>
+                    <a href="https://verify.skilljar.com/c/bf2f3bdqb45v" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('ai-fluency.png')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
             <!-- 2. Claude Code 101 -->
             <div class="card" id="cert-2">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('certs/claude-code-101.png')">
-                        <img src="certs/claude-code-101.png" alt="Claude Code 101" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('claude-code-101.png')">
+                        <img src="claude-code-101.png" alt="Claude Code 101" loading="lazy">
                     </div>
                     <h3>Claude Code 101</h3>
-                    <p>شهادة إتمام دورة Claude Code 101 من Anthropic.</p>
+                    <p data-i18n="cert2Desc">شهادة إتمام دورة Claude Code 101 من Anthropic.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://academy.claude.com/verify/7849217eb1fb1f5d51af2c09ae64037b" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/claude-code-101.png')">عرض الصورة 🔍</button>
+                    <a href="https://academy.claude.com/verify/7849217eb1fb1f5d51af2c09ae64037b" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('claude-code-101.png')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
             <!-- 3. Dub.ai Certificate -->
             <div class="card" id="cert-3">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('certs/claude-fluency-badge.png')">
-                        <img src="certs/claude-fluency-badge.png" alt="AI Fluency Badge - Claude Academy" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('claude-fluency-badge.png')">
+                        <img src="claude-fluency-badge.png" alt="AI Fluency Badge - Claude Academy" loading="lazy">
                     </div>
                     <h3>Dub.ai & Claude Academy</h3>
-                    <p>شهادة وشارة إتمام عبر منصة Dub.ai وأكاديمية Claude.</p>
+                    <p data-i18n="cert3Desc">شهادة وشارة إتمام عبر منصة Dub.ai وأكاديمية Claude.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://omp.dub.ai/certificate/gJy62NBtkSpM" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/claude-fluency-badge.png')">عرض الصورة 🔍</button>
+                    <a href="https://omp.dub.ai/certificate/gJy62NBtkSpM" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('claude-fluency-badge.png')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
             <!-- 4. الشهادة المعدّلة (أكاديمية طاقات - AI Creative) -->
             <div class="card" id="cert-4">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('certs/taqat-ai-creative.png')">
-                        <img src="certs/taqat-ai-creative.png" alt="TAQAT AI Creative Certificate" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('taqat-ai-creative.png')">
+                        <img src="taqat-ai-creative.png" alt="TAQAT AI Creative Certificate" loading="lazy">
                     </div>
                     <h3>TAQAT — AI Creative</h3>
-                    <p>إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).</p>
+                    <p data-i18n="cert4Desc">إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://taqat.academy/verify/TQ-2026-00214" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/taqat-ai-creative.png')">عرض الصورة 🔍</button>
+                    <a href="https://taqat.academy/verify/TQ-2026-00214" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('taqat-ai-creative.png')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
 
             <!-- 5. الشهادة الجديدة المضافة -->
             <div class="card" id="cert-5">
                 <div>
-                    <div class="cert-img-frame" onclick="openLightbox('certs/one-million-prompters.png')">
-                        <img src="certs/one-million-prompters.png" alt="1 Million Prompters Certificate" loading="lazy">
+                    <div class="cert-img-frame" onclick="openLightbox('one-million-prompters.png')">
+                        <img src="one-million-prompters.png" alt="1 Million Prompters Certificate" loading="lazy">
                     </div>
                     <h3>1 Million Prompters — Skilljar</h3>
-                    <p>مبادرة مليون خبير لأوامر الذكاء الاصطناعي وشهادة التحقق عبر Skilljar.</p>
+                    <p data-i18n="cert5Desc">مبادرة مليون خبير لأوامر الذكاء الاصطناعي وشهادة التحقق عبر Skilljar.</p>
                 </div>
                 <div class="card-actions">
-                    <a href="https://verify.skilljar.com/c/nm3gdsjtmsjd" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
-                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/one-million-prompters.png')">عرض الصورة 🔍</button>
+                    <a href="https://verify.skilljar.com/c/nm3gdsjtmsjd" target="_blank" class="card-link" data-i18n="verifyCert">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('one-million-prompters.png')" data-i18n="viewImage">عرض الصورة 🔍</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- نافذة معاينة صور الشهادات -->
-    <div class="lightbox" id="cert-lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox" id="cert-lightbox" onclick="closeLightbox()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button type="button" class="lightbox-close" onclick="closeLightbox()">إغلاق ✕</button>
+            <button type="button" class="lightbox-close" onclick="closeLightbox()" data-i18n="closeBtn">إغلاق ✕</button>
             <img id="lightbox-img" src="" alt="Certificate Preview">
         </div>
     </div>
 
     <!-- نموذج التواصل المحدث باستخدام Formspree -->
     <div class="subscribe-box" id="subscribe-section">
-        <h3>Stay in touch</h3>
-        <p style="color: var(--text-muted); margin: 10px 0 20px;">أرسل بريدك ورسالتك وستصلني مباشرة على بريدي الإلكتروني.</p>
+        <h3 data-i18n="contactBoxTitle">Stay in touch</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 20px;" data-i18n="contactBoxDesc">أرسل بريدك ورسالتك وستصلني مباشرة على بريدي الإلكتروني.</p>
         
         <form action="https://formspree.io/f/xoeezjvj" method="POST">
             <div class="form-group">
-                <label for="email">البريد الإلكتروني:</label>
+                <label for="email" data-i18n="emailLabel">البريد الإلكتروني:</label>
                 <input type="email" id="email" name="email" placeholder="name@example.com" required>
             </div>
             
             <div class="form-group">
-                <label for="message">الرسالة:</label>
-                <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+                <label for="message" data-i18n="messageLabel">الرسالة:</label>
+                <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." data-i18n-placeholder="messagePlaceholder" required></textarea>
             </div>
             
-            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">إرسال الرسالة</button>
+            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;" data-i18n="sendBtn">إرسال الرسالة</button>
         </form>
     </div>
 
     <footer id="contact">
-        <p>© 2026 Salem Abu Ryala - All Rights Reserved</p>
+        <p data-i18n="footerCopy">© 2026 Salem Abu Ryala - All Rights Reserved</p>
         <div style="margin-top: 10px;">
             <a href="mailto:salemhatem199@gmail.com">Email</a> |
             <a href="https://github.com/EngAbuHatem" target="_blank">GitHub</a> |
@@ -902,6 +999,145 @@
     </footer>
 
     <script>
+        const translations = {
+            ar: {
+                pageTitle: "سالم أبو ريالة | Eng. AbuHatem - Portfolio",
+                langBtn: "English",
+                navAbout: "عني",
+                navProjects: "المشاريع",
+                navSkills: "المهارات",
+                navCerts: "الشهادات",
+                navContact: "تواصل معي",
+                heroSubtitle: "Software Engineer & Builder 🇵🇸",
+                heroDesc: "مهندس برمجيات من فلسطين، أهتم بتحويل الأفكار والحلول البرمجية إلى منتجات عالية الجودة بتصميم نظيف وكود بسيط.",
+                heroBtn: "تواصل معي مباشرة",
+                whatsappBtn: "مراسلة عبر واتساب 💬",
+                statCerts: "شهادات معتمدة",
+                statCode: "كود نظيف ومنظم",
+                statLocation: "فلسطين",
+                aboutTitle: "نبذة عني",
+                aboutText: "أنا سالم محمد أبو ريالة، مهندس شغوف بتصميم وتطوير البرمجيات والأدوات الذكية المفيدة التي توفر حلولاً حقيقية وتجربة مستخدم ممتازة.",
+                projectsTitle: "المشاريع البارزة",
+                proj1Title: "تطبيق ويب متكامل (Web App)",
+                proj1Desc: "منصة ويب توفر واجهات تفاعلية سريعة وحلول برمجية حديثة.",
+                proj2Title: "أداة أتمتة وتحليل بيانات",
+                proj2Desc: "برنامج بلغة بايثون لتنفيذ المهام المؤتمتة وتسهيل معالجة البيانات.",
+                proj3Title: "تصميم واجهات وتجربة المستخدم",
+                proj3Desc: "تصميم وتطبيق واجهات حديثة تعتمد على الجمالية والبساطة والأداء العالي.",
+                viewGithub: "معاينة الكود على GitHub ↗",
+                livePreview: "المعاينة الحية ↗",
+                skillsTitle: "المهارات والتقنيات",
+                skillProblem: "Problem Solving",
+                certsTitle: "الشهادات المعتمدة",
+                cert1Desc: "شهادة إتمام معتمدة من Anthropic في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.",
+                cert2Desc: "شهادة إتمام دورة Claude Code 101 من Anthropic.",
+                cert3Desc: "شهادة وشارة إتمام عبر منصة Dub.ai وأكاديمية Claude.",
+                cert4Desc: "إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).",
+                cert5Desc: "مبادرة مليون خبير لأوامر الذكاء الاصطناعي وشهادة التحقق عبر Skilljar.",
+                verifyCert: "التحقق من الشهادة ↗",
+                viewImage: "عرض الصورة 🔍",
+                closeBtn: "إغلاق ✕",
+                contactBoxTitle: "Stay in touch",
+                contactBoxDesc: "أرسل بريدك ورسالتك وستصلني مباشرة على بريدي الإلكتروني.",
+                emailLabel: "البريد الإلكتروني:",
+                messageLabel: "الرسالة:",
+                messagePlaceholder: "اكتب رسالتك هنا...",
+                sendBtn: "إرسال الرسالة",
+                footerCopy: "© 2026 Salem Abu Ryala - All Rights Reserved"
+            },
+            en: {
+                pageTitle: "Salem Abu Ryala | Eng. AbuHatem - Portfolio",
+                langBtn: "عربي",
+                navAbout: "About",
+                navProjects: "Projects",
+                navSkills: "Skills",
+                navCerts: "Certificates",
+                navContact: "Contact",
+                heroSubtitle: "Software Engineer & Builder 🇵🇸",
+                heroDesc: "Software engineer from Palestine focused on turning ideas into high-quality products with clean design and simple code.",
+                heroBtn: "Contact Me Directly",
+                whatsappBtn: "Message on WhatsApp 💬",
+                statCerts: "Verified Certificates",
+                statCode: "Clean & Structured Code",
+                statLocation: "Palestine",
+                aboutTitle: "About Me",
+                aboutText: "I am Salem Mohammed Abu Ryala, an engineer passionate about designing and building smart software and practical tools that deliver real solutions and great user experience.",
+                projectsTitle: "Featured Projects",
+                proj1Title: "Full Web Application",
+                proj1Desc: "A web platform delivering fast interactive interfaces and modern software solutions.",
+                proj2Title: "Automation & Data Tool",
+                proj2Desc: "A Python tool for automating tasks and streamlining data processing.",
+                proj3Title: "UI & UX Design",
+                proj3Desc: "Designing and implementing modern interfaces focused on aesthetics, simplicity, and performance.",
+                viewGithub: "View Code on GitHub ↗",
+                livePreview: "Live Preview ↗",
+                skillsTitle: "Skills & Technologies",
+                skillProblem: "Problem Solving",
+                certsTitle: "Verified Certificates",
+                cert1Desc: "Verified completion certificate from Anthropic on AI Fluency Framework & Foundations.",
+                cert2Desc: "Completion certificate for Claude Code 101 from Anthropic.",
+                cert3Desc: "Completion certificate and badge via Dub.ai and Claude Academy.",
+                cert4Desc: "Completed the AI Creative training program by TAQAT Academy (9 hours, Intermediate, Oct 2026).",
+                cert5Desc: "1 Million Prompters initiative certificate verified through Skilljar.",
+                verifyCert: "Verify Certificate ↗",
+                viewImage: "View Image 🔍",
+                closeBtn: "Close ✕",
+                contactBoxTitle: "Stay in touch",
+                contactBoxDesc: "Send your email and message and it will go straight to my inbox.",
+                emailLabel: "Email Address:",
+                messageLabel: "Message:",
+                messagePlaceholder: "Write your message here...",
+                sendBtn: "Send Message",
+                footerCopy: "© 2026 Salem Abu Ryala - All Rights Reserved"
+            }
+        };
+
+        let currentLang = localStorage.getItem('portfolio_lang') || 'ar';
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('portfolio_lang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            const dict = translations[lang];
+            document.title = dict.pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key]) el.placeholder = dict[key];
+            });
+
+            document.getElementById('lang-toggle').textContent = dict.langBtn;
+        }
+
+        function toggleLanguage() {
+            applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+        }
+
+        let matrixColor = '#00ff87';
+
+        function setTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+            localStorage.setItem('portfolio_theme', themeName);
+
+            document.querySelectorAll('.color-dot').forEach(dot => {
+                dot.classList.toggle('active', dot.getAttribute('data-theme') === themeName);
+            });
+
+            if (themeName === 'blue') matrixColor = '#38bdf8';
+            else if (themeName === 'red') matrixColor = '#ff4757';
+            else matrixColor = '#00ff87';
+        }
+
+        applyLanguage(currentLang);
+        setTheme(localStorage.getItem('portfolio_theme') || 'green');
+
         function openLightbox(src) {
             const modal = document.getElementById('cert-lightbox');
             const img = document.getElementById('lightbox-img');
@@ -937,7 +1173,7 @@
             ctx.fillStyle = 'rgba(8, 9, 12, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = '#00ff87';
+            ctx.fillStyle = matrixColor;
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
