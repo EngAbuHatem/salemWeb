@@ -13,14 +13,15 @@
     <style>
         :root {
             --bg-color: #08090c;
-            --card-bg: rgba(18, 22, 31, 0.75);
+            --card-bg: rgba(18, 22, 31, 0.78);
             --text-main: #f0f2f5;
             --text-muted: #a0a6b0;
             --accent-red: #ff4757;
             --accent-orange: #ff7f50;
             --accent-green: #00ff87;
-            --border-color: rgba(0, 255, 135, 0.15);
-            --glow-shadow: 0 0 30px rgba(0, 255, 135, 0.3);
+            --accent-cyan: #12fdee;
+            --border-color: rgba(0, 255, 135, 0.16);
+            --glow-shadow: 0 0 30px rgba(0, 255, 135, 0.28);
             
             --font-title: 'Cairo', sans-serif;
             --font-body: 'Tajawal', sans-serif;
@@ -31,6 +32,10 @@
             margin: 0;
             padding: 0;
             font-family: var(--font-body);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -125,7 +130,7 @@
             margin: 0 auto 30px;
             border-radius: 50%;
             padding: 5px;
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-orange), var(--accent-red));
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan), var(--accent-orange), var(--accent-red));
             box-shadow: 0 0 35px rgba(0, 255, 135, 0.4);
             animation: pulse-glow 4s infinite alternate;
         }
@@ -192,35 +197,106 @@
             margin-bottom: 20px;
         }
 
+        /* أزرار مطورة مع تأثير لمعان وحركة ناعمة */
         .btn {
+            position: relative;
+            overflow: hidden;
             font-family: var(--font-title);
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 12px 32px;
-            background: linear-gradient(45deg, var(--accent-green), #00b894);
-            color: #0b0c10;
+            background: linear-gradient(135deg, var(--accent-green), #00b894);
+            color: #080b0f;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 14px;
             font-weight: 700;
             font-size: 1.05rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,255,135,0.4);
-            border: none;
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, filter 0.28s ease;
+            box-shadow: 0 6px 22px rgba(0, 255, 135, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 65%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+            transform: skewX(-22deg);
+            transition: left 0.55s ease;
+        }
+
+        .btn:hover::before {
+            left: 140%;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(18, 253, 238, 0.571);
+            box-shadow: 0 12px 30px rgba(18, 253, 238, 0.35);
+            filter: brightness(1.04);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(0.98);
         }
 
         .btn-whatsapp {
-            background: linear-gradient(45deg, #25D366, #128C7E);
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: #ffffff;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 22px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .btn-whatsapp:hover {
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
+        }
+
+        /* أزرار البطاقات */
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .card-link {
+            font-family: var(--font-title);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 7px 13px;
+            border-radius: 10px;
+            background: rgba(0, 255, 135, 0.06);
+            border: 1px solid rgba(0, 255, 135, 0.22);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .card-link:hover {
+            background: rgba(0, 255, 135, 0.14);
+            border-color: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 0 14px rgba(0, 255, 135, 0.2);
+        }
+
+        .card-link-secondary {
+            color: var(--accent-cyan);
+            background: rgba(18, 253, 238, 0.06);
+            border-color: rgba(18, 253, 238, 0.24);
+        }
+
+        .card-link-secondary:hover {
+            background: rgba(18, 253, 238, 0.14);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 14px rgba(18, 253, 238, 0.2);
         }
 
         .stats-container {
@@ -235,15 +311,16 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 15px 25px;
-            border-radius: 12px;
+            border-radius: 14px;
             min-width: 140px;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .stat-box:hover {
             transform: translateY(-5px);
             border-color: var(--accent-green);
+            box-shadow: 0 8px 22px rgba(0, 255, 135, 0.14);
         }
 
         .stat-number {
@@ -313,57 +390,128 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+            gap: 22px;
         }
 
+        /* إطارات البطاقات المطورة */
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 24px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(160deg, rgba(22, 28, 40, 0.88), rgba(13, 17, 25, 0.82));
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            padding: 22px;
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.32s ease, box-shadow 0.32s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-green);
-            box-shadow: 0 10px 25px rgba(5, 247, 134, 0.2);
+            transform: translateY(-6px);
+            border-color: rgba(0, 255, 135, 0.55);
+            box-shadow: 0 16px 34px rgba(5, 247, 134, 0.16), inset 0 1px 0 rgba(0, 255, 135, 0.15);
         }
 
         .card h3 {
             font-family: var(--font-title);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--text-main);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 0.96rem;
+            margin-bottom: 16px;
         }
 
-        .card a {
+        /* إطار صورة الشهادة */
+        .cert-img-frame {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 255, 135, 0.22);
+            background: rgba(8, 11, 18, 0.92);
+            cursor: zoom-in;
+        }
+
+        .cert-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .card:hover .cert-img-frame img {
+            transform: scale(1.04);
+        }
+
+        /* نافذة معاينة الصورة بحجم كامل */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(4, 6, 10, 0.9);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 880px;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 135, 0.35);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+            background: #0d1119;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            max-height: 82vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(8, 9, 12, 0.85);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            padding: 6px 12px;
+            cursor: pointer;
             font-family: var(--font-title);
-            color: var(--accent-green);
-            text-decoration: none;
             font-weight: 700;
-            font-size: 0.95rem;
         }
 
         .subscribe-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            background: linear-gradient(160deg, rgba(22, 28, 40, 0.9), rgba(13, 17, 25, 0.85));
+            border: 1px solid rgba(0, 255, 135, 0.25);
             padding: 40px;
-            border-radius: 20px;
+            border-radius: 22px;
             text-align: center;
             max-width: 580px;
             margin: 40px auto;
             backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(63, 30, 210, 0.08);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
 
         .subscribe-box h3 {
@@ -396,6 +544,7 @@
             outline: none;
             font-family: var(--font-body);
             font-size: 1rem;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .subscribe-box textarea {
@@ -406,6 +555,7 @@
         .subscribe-box input[type="email"]:focus,
         .subscribe-box textarea:focus {
             border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(0, 255, 135, 0.12);
         }
 
         .cursor-arrow {
@@ -463,7 +613,6 @@
             color: var(--accent-green);
         }
 
-        /* --- التعديلات الخاصة بالتصميم المتجاوب للجوال --- */
         @media (max-width: 768px) {
             header {
                 padding: 15px 4%;
@@ -559,7 +708,7 @@
 
         <div class="stats-container">
             <div class="stat-box">
-                <div class="stat-number">+4</div>
+                <div class="stat-number">+5</div>
                 <div class="stat-label">شهادات معتمدة</div>
             </div>
             <div class="stat-box">
@@ -582,31 +731,43 @@
         <h2 class="section-title">المشاريع البارزة</h2>
         <div class="grid">
             <div class="card" id="proj-1">
-                <h3>تطبيق ويب متكامل (Web App)</h3>
-                <p>منصة ويب توفر واجهات تفاعلية سريعة وحلول برمجية حديثة.</p>
-                <div style="margin-bottom: 15px;">
-                    <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">JavaScript</span>
-                    <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Web Dev</span>
+                <div>
+                    <h3>تطبيق ويب متكامل (Web App)</h3>
+                    <p>منصة ويب توفر واجهات تفاعلية سريعة وحلول برمجية حديثة.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">JavaScript</span>
+                        <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Web Dev</span>
+                    </div>
                 </div>
-                <a href="https://github.com/EngAbuHatem" target="_blank">معاينة الكود على GitHub ↗</a>
+                <div class="card-actions">
+                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link">معاينة الكود على GitHub ↗</a>
+                </div>
             </div>
             <div class="card" id="proj-2">
-                <h3>أداة أتمتة وتحليل بيانات</h3>
-                <p>برنامج بلغة بايثون لتنفيذ المهام المؤتمتة وتسهيل معالجة البيانات.</p>
-                <div style="margin-bottom: 15px;">
-                    <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Python</span>
-                    <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Automation</span>
+                <div>
+                    <h3>أداة أتمتة وتحليل بيانات</h3>
+                    <p>برنامج بلغة بايثون لتنفيذ المهام المؤتمتة وتسهيل معالجة البيانات.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Python</span>
+                        <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Automation</span>
+                    </div>
                 </div>
-                <a href="https://github.com/EngAbuHatem" target="_blank">معاينة الكود على GitHub ↗</a>
+                <div class="card-actions">
+                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link">معاينة الكود على GitHub ↗</a>
+                </div>
             </div>
             <div class="card" id="proj-3">
-                <h3>تصميم واجهات وتجربة المستخدم</h3>
-                <p>تصميم وتطبيق واجهات حديثة تعتمد على الجمالية والبساطة والأداء العالي.</p>
-                <div style="margin-bottom: 15px;">
-                    <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">UI Design</span>
-                    <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Electronics</span>
+                <div>
+                    <h3>تصميم واجهات وتجربة المستخدم</h3>
+                    <p>تصميم وتطبيق واجهات حديثة تعتمد على الجمالية والبساطة والأداء العالي.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">UI Design</span>
+                        <span class="skill-badge" style="font-size: 0.8rem; padding: 4px 12px;">Electronics</span>
+                    </div>
                 </div>
-                <a href="https://github.com/EngAbuHatem" target="_blank">المعاينة الحية ↗</a>
+                <div class="card-actions">
+                    <a href="https://github.com/EngAbuHatem" target="_blank" class="card-link">المعاينة الحية ↗</a>
+                </div>
             </div>
         </div>
     </section>
@@ -626,28 +787,90 @@
     <section class="section" id="certs">
         <h2 class="section-title">الشهادات المعتمدة</h2>
         <div class="grid">
+            <!-- 1. AI Fluency: Framework & Foundations -->
             <div class="card" id="cert-1">
-                <h3>Skilljar Certificate</h3>
-                <p>شهادة اعتماد معتمدة عبر منصة Skilljar.</p>
-                <a href="https://verify.skilljar.com/c/bf2f3bdqb45v" target="_blank">التحقق من الشهادة ↗</a>
+                <div>
+                    <div class="cert-img-frame" onclick="openLightbox('certs/ai-fluency.png')">
+                        <img src="certs/ai-fluency.png" alt="AI Fluency: Framework & Foundations" loading="lazy">
+                    </div>
+                    <h3>AI Fluency: Framework & Foundations</h3>
+                    <p>شهادة إتمام معتمدة من Anthropic في أساسيات وإطار عمل إتقان الذكاء الاصطناعي.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://verify.skilljar.com/c/bf2f3bdqb45v" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/ai-fluency.png')">عرض الصورة 🔍</button>
+                </div>
             </div>
+
+            <!-- 2. Claude Code 101 -->
             <div class="card" id="cert-2">
-                <h3>Claude Academy Certificate</h3>
-                <p>شهادة اعتماد أكاديمية Claude لتطوير الذكاء الاصطناعي.</p>
-                <a href="https://academy.claude.com/verify/7849217eb1fb1f5d51af2c09ae64037b" target="_blank">التحقق من الشهادة ↗</a>
+                <div>
+                    <div class="cert-img-frame" onclick="openLightbox('certs/claude-code-101.png')">
+                        <img src="certs/claude-code-101.png" alt="Claude Code 101" loading="lazy">
+                    </div>
+                    <h3>Claude Code 101</h3>
+                    <p>شهادة إتمام دورة Claude Code 101 من Anthropic.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://academy.claude.com/verify/7849217eb1fb1f5d51af2c09ae64037b" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/claude-code-101.png')">عرض الصورة 🔍</button>
+                </div>
             </div>
+
+            <!-- 3. Dub.ai Certificate -->
             <div class="card" id="cert-3">
-                <h3>Dub.ai Certificate</h3>
-                <p>شهادة إتمام وتطوير عبر منصة Dub.ai.</p>
-                <a href="https://omp.dub.ai/certificate/gJy62NBtkSpM" target="_blank">التحقق من الشهادة ↗</a>
+                <div>
+                    <div class="cert-img-frame" onclick="openLightbox('certs/claude-fluency-badge.png')">
+                        <img src="certs/claude-fluency-badge.png" alt="AI Fluency Badge - Claude Academy" loading="lazy">
+                    </div>
+                    <h3>Dub.ai & Claude Academy</h3>
+                    <p>شهادة وشارة إتمام عبر منصة Dub.ai وأكاديمية Claude.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://omp.dub.ai/certificate/gJy62NBtkSpM" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/claude-fluency-badge.png')">عرض الصورة 🔍</button>
+                </div>
             </div>
+
+            <!-- 4. الشهادة المعدّلة (أكاديمية طاقات - AI Creative) -->
             <div class="card" id="cert-4">
-                <h3>Taqat Academy Certificate</h3>
-                <p>شهادة اعتماد أكاديمية طاقات.</p>
-                <a href="https://taqat.academy/verify/TQ-2026-00214" target="_blank">التحقق من الشهادة ↗</a>
+                <div>
+                    <div class="cert-img-frame" onclick="openLightbox('certs/taqat-ai-creative.png')">
+                        <img src="certs/taqat-ai-creative.png" alt="TAQAT AI Creative Certificate" loading="lazy">
+                    </div>
+                    <h3>TAQAT — AI Creative</h3>
+                    <p>إتمام برنامج AI Creative التدريبي من أكاديمية طاقات (9 ساعات، مستوى متوسط، أكتوبر 2026).</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://taqat.academy/verify/TQ-2026-00214" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/taqat-ai-creative.png')">عرض الصورة 🔍</button>
+                </div>
+            </div>
+
+            <!-- 5. الشهادة الجديدة المضافة -->
+            <div class="card" id="cert-5">
+                <div>
+                    <div class="cert-img-frame" onclick="openLightbox('certs/one-million-prompters.png')">
+                        <img src="certs/one-million-prompters.png" alt="1 Million Prompters Certificate" loading="lazy">
+                    </div>
+                    <h3>1 Million Prompters — Skilljar</h3>
+                    <p>مبادرة مليون خبير لأوامر الذكاء الاصطناعي وشهادة التحقق عبر Skilljar.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://verify.skilljar.com/c/nm3gdsjtmsjd" target="_blank" class="card-link">التحقق من الشهادة ↗</a>
+                    <button type="button" class="card-link card-link-secondary" onclick="openLightbox('certs/one-million-prompters.png')">عرض الصورة 🔍</button>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- نافذة معاينة صور الشهادات -->
+    <div class="lightbox" id="cert-lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button type="button" class="lightbox-close" onclick="closeLightbox()">إغلاق ✕</button>
+            <img id="lightbox-img" src="" alt="Certificate Preview">
+        </div>
+    </div>
 
     <!-- نموذج التواصل المحدث باستخدام Formspree -->
     <div class="subscribe-box" id="subscribe-section">
@@ -679,6 +902,22 @@
     </footer>
 
     <script>
+        function openLightbox(src) {
+            const modal = document.getElementById('cert-lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            modal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('cert-lightbox');
+            modal.classList.remove('active');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
         const canvas = document.getElementById('matrix-bg');
         const ctx = canvas.getContext('2d');
 
