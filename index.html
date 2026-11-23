@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title id="page-title">سالم أبو ريالة | Eng. AbuHatem - Portfolio</title>
+<title id="page-title">سالم أبو ريالة | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,22 +16,18 @@
 /* الجوال (الأساس) */
 --hero-pad-top:34px;--hero-pad-bottom:36px;--hero-h1-size:1.85rem;--hero-sub-size:1rem;--hero-p-size:.96rem;--avatar-size:140px;
 --section-pad-x:5%;--section-pad-y:36px;--section-title-size:1.45rem;--card-pad:16px;--grid-min:240px;
---circle-btn-size:34px;--circle-font-size:.72rem;--dock-gap:7px;--dock-pad:6px;
+--circle-btn-size:34px;--circle-font-size:.72rem;--dock-gap:7px;--dock-pad:6px;--slider-w:92px;
 }
 /* الجوال الصغير جداً */
-@media (max-width:359px){:root{--circle-btn-size:30px;--circle-font-size:.66rem;--dock-gap:5px;--dock-pad:5px;--hero-h1-size:1.65rem;--avatar-size:120px}}
+@media (max-width:359px){:root{--circle-btn-size:30px;--slider-w:72px;--circle-font-size:.66rem;--dock-gap:5px;--dock-pad:5px;--hero-h1-size:1.65rem;--avatar-size:120px}}
 /* التابلت */
-@media (min-width:768px){:root{--hero-pad-top:70px;--hero-pad-bottom:48px;--hero-h1-size:2.5rem;--hero-sub-size:1.15rem;--hero-p-size:1.05rem;--avatar-size:180px;--section-pad-x:6.5%;--section-pad-y:48px;--section-title-size:1.75rem;--card-pad:20px;--grid-min:280px;--circle-btn-size:38px;--circle-font-size:.8rem;--dock-gap:8px;--dock-pad:6px}}
+@media (min-width:768px){:root{--hero-pad-top:70px;--hero-pad-bottom:48px;--hero-h1-size:2.5rem;--hero-sub-size:1.15rem;--hero-p-size:1.05rem;--avatar-size:180px;--section-pad-x:6.5%;--section-pad-y:48px;--section-title-size:1.75rem;--card-pad:20px;--grid-min:280px;--circle-btn-size:38px;--slider-w:112px;--circle-font-size:.8rem;--dock-gap:8px;--dock-pad:6px}}
 /* اللابتوب */
-@media (min-width:1100px){:root{--hero-pad-top:90px;--hero-pad-bottom:60px;--hero-h1-size:3.1rem;--hero-sub-size:1.3rem;--hero-p-size:1.16rem;--avatar-size:215px;--section-pad-x:8%;--section-pad-y:62px;--section-title-size:2.05rem;--card-pad:24px;--grid-min:310px;--circle-btn-size:42px;--circle-font-size:.84rem;--dock-gap:9px}}
+@media (min-width:1100px){:root{--hero-pad-top:90px;--hero-pad-bottom:60px;--hero-h1-size:3.1rem;--hero-sub-size:1.3rem;--hero-p-size:1.16rem;--avatar-size:215px;--section-pad-x:8%;--section-pad-y:62px;--section-title-size:2.05rem;--card-pad:24px;--grid-min:310px;--circle-btn-size:42px;--slider-w:132px;--circle-font-size:.84rem;--dock-gap:9px}}
 /* الشاشات الكبيرة */
-@media (min-width:1600px){:root{--hero-h1-size:3.6rem;--hero-sub-size:1.45rem;--hero-p-size:1.28rem;--avatar-size:250px;--section-pad-x:12%;--section-pad-y:76px;--section-title-size:2.3rem;--card-pad:28px;--grid-min:340px;--circle-btn-size:46px;--circle-font-size:.92rem}}
+@media (min-width:1600px){:root{--hero-h1-size:3.6rem;--hero-sub-size:1.45rem;--hero-p-size:1.28rem;--avatar-size:250px;--section-pad-x:12%;--section-pad-y:76px;--section-title-size:2.3rem;--card-pad:28px;--grid-min:340px;--circle-btn-size:46px;--slider-w:150px;--circle-font-size:.92rem}}
 
-body[data-color="blue"]{--accent-primary:#38bdf8;--accent-secondary:#2563eb;--accent-cyan:#67e8f9;--accent-rgb:56,189,248}
-body[data-color="green"]{--accent-primary:#00ff87;--accent-secondary:#00b894;--accent-cyan:#12fdee;--accent-rgb:0,255,135}
 body[data-mode="light"]{--bg-color:#f4f7fb;--card-bg:rgba(255,255,255,.84);--card-bg-2:rgba(248,250,252,.88);--input-bg:#fff;--header-bg:rgba(255,255,255,.92);--text-main:#0f172a;--text-muted:#475569;--border-subtle:rgba(15,23,42,.14)}
-body[data-mode="light"][data-color="green"]{--accent-primary:#059669;--accent-secondary:#10b981;--accent-cyan:#0d9488;--accent-rgb:5,150,105}
-body[data-mode="light"][data-color="blue"]{--accent-primary:#0284c7;--accent-secondary:#2563eb;--accent-cyan:#0369a1;--accent-rgb:2,132,199}
 
 *{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-body)}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
@@ -49,15 +45,16 @@ body[data-mode="light"] #matrix-bg{opacity:.55}
 .top-left-dock{position:fixed;top:max(10px,env(safe-area-inset-top));left:max(10px,env(safe-area-inset-left));z-index:120;direction:ltr;display:flex;align-items:center;gap:var(--dock-gap);padding:var(--dock-pad);border-radius:999px;background:var(--header-bg);border:1px solid var(--border-color);backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.22);max-width:calc(100vw - 20px)}
 .circle-btn{flex:0 0 auto;width:var(--circle-btn-size);height:var(--circle-btn-size);border-radius:50%;border:2px solid transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-family:var(--font-title);font-weight:800;font-size:var(--circle-font-size);line-height:1;padding:0;transition:transform .22s,box-shadow .22s,border-color .22s}
 .circle-btn:hover{transform:scale(1.08)}
-.circle-color-green{background:#00ff87;color:#052e16}
-.circle-color-blue{background:#38bdf8;color:#082f49}
-.circle-color-green.active,.circle-color-blue.active{border-color:var(--text-main);box-shadow:0 0 12px rgba(var(--accent-rgb),.65)}
+#color-slider{-webkit-appearance:none;appearance:none;flex:0 0 auto;width:var(--slider-w);height:12px;border-radius:6px;outline:none;cursor:pointer;margin:0 4px;border:1px solid var(--border-strong,rgba(255,255,255,.3));background:linear-gradient(90deg,#a855f7,#38bdf8,#00ff87)}
+#color-slider::-webkit-slider-runnable-track{height:12px;background:transparent;border-radius:6px}
+#color-slider::-webkit-slider-thumb{-webkit-appearance:none;width:calc(var(--circle-btn-size) - 8px);height:calc(var(--circle-btn-size) - 8px);margin-top:calc((12px - (var(--circle-btn-size) - 8px))/2);border-radius:50%;background:var(--accent-primary);border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.4),0 0 10px rgba(var(--accent-rgb),.7)}
+#color-slider::-moz-range-track{height:12px;background:transparent}
+#color-slider::-moz-range-thumb{width:calc(var(--circle-btn-size) - 14px);height:calc(var(--circle-btn-size) - 14px);border-radius:50%;background:var(--accent-primary);border:3px solid #fff}
 .circle-tool{background:rgba(var(--accent-rgb),.14);color:var(--text-main);border-color:rgba(var(--accent-rgb),.4)}
 
 /* الهيدر: ثابت فقط من التابلت وما فوق، وبه مساحة محجوزة للشريط */
-header{padding:calc(max(10px,env(safe-area-inset-top)) + var(--circle-btn-size) + 22px) var(--section-pad-x) 12px;display:flex;justify-content:space-between;align-items:center;gap:10px 14px;border-bottom:1px solid var(--border-color);background:var(--header-bg);flex-wrap:wrap;position:relative;z-index:50}
-@media (min-width:768px){header{position:sticky;top:0;backdrop-filter:blur(12px);padding:14px var(--section-pad-x) 14px calc(var(--circle-btn-size)*4 + var(--dock-gap)*3 + 70px)}}
-.logo{font-family:var(--font-title);font-size:1.35rem;font-weight:800;color:var(--accent-primary);letter-spacing:1px}
+header{padding:calc(max(10px,env(safe-area-inset-top)) + var(--circle-btn-size) + 22px) var(--section-pad-x) 12px;display:flex;justify-content:center;align-items:center;gap:10px 14px;border-bottom:1px solid var(--border-color);background:var(--header-bg);flex-wrap:wrap;position:relative;z-index:50}
+@media (min-width:768px){header{position:sticky;top:0;backdrop-filter:blur(12px);padding:14px var(--section-pad-x) 14px calc(var(--circle-btn-size)*2 + var(--slider-w) + var(--dock-gap)*2 + 70px)}}
 nav{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
 nav a{font-family:var(--font-title);font-weight:600;color:var(--text-muted);text-decoration:none;padding:4px 9px;border-radius:8px;transition:color .25s;font-size:.92rem}
 nav a:hover{color:var(--accent-primary)}
@@ -127,11 +124,10 @@ footer a:hover{color:var(--accent-primary)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-<body data-color="green" data-mode="dark">
+<body data-mode="dark">
 
 <div class="top-left-dock" aria-label="Theme and Language Controls">
-  <button type="button" class="circle-btn circle-color-green active" data-color-btn="green" title="أخضر / Green" aria-label="Green" onclick="setColorTheme('green')"></button>
-  <button type="button" class="circle-btn circle-color-blue" data-color-btn="blue" title="أزرق / Blue" aria-label="Blue" onclick="setColorTheme('blue')"></button>
+  <input type="range" id="color-slider" min="0" max="100" step="1" value="100" aria-label="Theme color / اللون" title="اللون / Color">
   <button type="button" class="circle-btn circle-tool" id="mode-toggle" title="ليلي / نهاري" aria-label="Dark / Light" onclick="toggleMode()">☀️</button>
   <button type="button" class="circle-btn circle-tool" id="lang-toggle" title="عربي / English" aria-label="Language" onclick="toggleLanguage()">EN</button>
 </div>
@@ -141,7 +137,6 @@ footer a:hover{color:var(--accent-primary)}
 <div class="blob-2"></div>
 
 <header>
-  <div class="logo">Eng. AbuHatem</div>
   <nav>
     <a href="#about" data-i18n="navAbout">عني</a>
     <a href="#projects" data-i18n="navProjects">المشاريع</a>
@@ -326,7 +321,7 @@ footer a:hover{color:var(--accent-primary)}
 
 <script>
 const translations={
-ar:{pageTitle:"سالم أبو ريالة | Eng. AbuHatem - Portfolio",langBtn:"EN",navAbout:"عني",navProjects:"المشاريع",navSkills:"المهارات",navCerts:"الشهادات",navContact:"تواصل معي",
+ar:{pageTitle:"سالم أبو ريالة | Portfolio",langBtn:"EN",navAbout:"عني",navProjects:"المشاريع",navSkills:"المهارات",navCerts:"الشهادات",navContact:"تواصل معي",
 heroSubtitle:"Software Engineer & Builder 🇵🇸",heroDesc:"مهندس برمجيات من فلسطين، أهتم بتحويل الأفكار والحلول البرمجية إلى منتجات عالية الجودة بتصميم نظيف وكود بسيط.",
 heroBtn:"تواصل معي مباشرة",whatsappBtn:"مراسلة عبر واتساب 💬",statCerts:"شهادات معتمدة",statCode:"كود نظيف ومنظم",statLocation:"فلسطين",
 aboutTitle:"نبذة عني",aboutText:"أنا سالم محمد أبو ريالة، مهندس شغوف بتصميم وتطوير البرمجيات والأدوات الذكية المفيدة التي توفر حلولاً حقيقية وتجربة مستخدم ممتازة.",
@@ -342,7 +337,7 @@ cert5Desc:"برنامج تدريبي (9 ساعات، مستوى متوسط) في
 verifyCert:"التحقق من الشهادة ↗",viewImage:"عرض الصورة 🔍",closeBtn:"إغلاق ✕",
 contactBoxTitle:"ابقَ على تواصل",contactBoxDesc:"أرسل بريدك ورسالتك وستصلني مباشرة على بريدي الإلكتروني.",
 emailLabel:"البريد الإلكتروني:",messageLabel:"الرسالة:",messagePlaceholder:"اكتب رسالتك هنا...",sendBtn:"إرسال الرسالة",footerCopy:"© 2026 Salem Abu Ryala - All Rights Reserved"},
-en:{pageTitle:"Salem Abu Ryala | Eng. AbuHatem - Portfolio",langBtn:"عربي",navAbout:"About",navProjects:"Projects",navSkills:"Skills",navCerts:"Certificates",navContact:"Contact",
+en:{pageTitle:"Salem Abu Ryala | Portfolio",langBtn:"عربي",navAbout:"About",navProjects:"Projects",navSkills:"Skills",navCerts:"Certificates",navContact:"Contact",
 heroSubtitle:"Software Engineer & Builder 🇵🇸",heroDesc:"Software engineer from Palestine focused on turning ideas into high-quality products with clean design and simple code.",
 heroBtn:"Contact Me Directly",whatsappBtn:"Message on WhatsApp 💬",statCerts:"Verified Certificates",statCode:"Clean & Structured Code",statLocation:"Palestine",
 aboutTitle:"About Me",aboutText:"I am Salem Mohammed Abu Ryala, an engineer passionate about designing and building smart software and practical tools that deliver real solutions and great user experience.",
@@ -364,7 +359,7 @@ function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function load(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
 
 let currentLang=load('portfolio_lang','ar');
-let currentColor=load('portfolio_color','green');
+let currentHue=parseInt(load('portfolio_hue','100'),10);if(isNaN(currentHue))currentHue=100;
 let currentMode=load('portfolio_mode','dark');
 let matrixColor='#00ff87';
 
@@ -381,21 +376,31 @@ function applyLanguage(lang){
 }
 function toggleLanguage(){applyLanguage(currentLang==='ar'?'en':'ar')}
 
-function updateMatrixColor(){
-  if(currentColor==='blue')matrixColor=currentMode==='light'?'#0369a1':'#38bdf8';
-  else matrixColor=currentMode==='light'?'#047857':'#00ff87';
+const palette={dark:[[168,85,247],[56,189,248],[0,255,135]],light:[[126,34,206],[2,132,199],[5,150,105]]};
+const slider=document.getElementById('color-slider');
+function mixc(a,b,t){return a.map((v,i)=>Math.round(v+(b[i]-v)*t))}
+function hx(c){return '#'+c.map(v=>v.toString(16).padStart(2,'0')).join('')}
+function applyColor(){
+  const p=currentHue/100,st=palette[currentMode],seg=p<.5?0:1,t=p<.5?p*2:(p-.5)*2;
+  const c=mixc(st[seg],st[seg+1],t);
+  const sec=c.map(v=>Math.round(v*.72));
+  const cy=currentMode==='dark'?mixc(c,[255,255,255],.35):c.map(v=>Math.round(v*.85));
+  const b=document.body.style;
+  b.setProperty('--accent-primary',hx(c));
+  b.setProperty('--accent-secondary',hx(sec));
+  b.setProperty('--accent-cyan',hx(cy));
+  b.setProperty('--accent-rgb',c.join(','));
+  matrixColor=hx(c);
+  slider.value=currentHue;
+  slider.style.background='linear-gradient(90deg,'+st.map(hx).join(',')+')';
+  store('portfolio_hue',String(currentHue));
 }
-function setColorTheme(c){
-  if(c!=='green'&&c!=='blue')c='green';
-  currentColor=c;document.body.setAttribute('data-color',c);store('portfolio_color',c);
-  document.querySelectorAll('[data-color-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-color-btn')===c));
-  updateMatrixColor();
-}
+slider.addEventListener('input',()=>{currentHue=parseInt(slider.value,10);applyColor()});
 function applyMode(m){
   currentMode=m==='light'?'light':'dark';
   document.body.setAttribute('data-mode',currentMode);store('portfolio_mode',currentMode);
   document.getElementById('mode-toggle').textContent=currentMode==='light'?'🌙':'☀️';
-  updateMatrixColor();
+  applyColor();
   clearCanvas();
 }
 function toggleMode(){applyMode(currentMode==='dark'?'light':'dark')}
@@ -440,7 +445,6 @@ function drawMatrix(){
 setInterval(drawMatrix,42);
 
 applyLanguage(currentLang);
-setColorTheme(currentColor);
 applyMode(currentMode);
 </script>
 </body>
